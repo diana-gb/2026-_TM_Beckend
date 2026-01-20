@@ -8,6 +8,7 @@ import mail_transporter from './config/mail.config.js'
 import ENVIRONMENT from './config/environment.config.js'
 import randomMiddleware from './middlewares/random.middleware.js'
 import cors from 'cors'
+import workspaceRepository from './repositoty/workspace.repository.js'
 
 
 
@@ -76,3 +77,18 @@ Crear el registro en mongo DB usando el user.repository
 Responder con un mensaje tipo 'Usuario creado exitosamente'
 */
 
+
+//Para crear un espacio de trabajo de prueba
+
+/* async function crearEspacioDeTrabajo() {
+    const workspace = userRepository.create(
+        , // aca va mi ID
+        'test',
+        ,// aca va la imagen
+        'esta es la descripcion del espacio de trabajo'
+    )
+    //Me agrego como miembro
+    await workspaceRepository.addMember(workspace._id, 'mi ID', "owner")
+}
+
+crearEspacioDeTrabajo() */
