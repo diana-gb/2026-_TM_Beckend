@@ -35,23 +35,24 @@ class AuthController{
                 }  para que expire en 7 dias por ejemplo si no verifico en ese plazo*/
             )
 
-            mail_transporter.sendMail(
-                {
-                    from: ENVIRONMENT.GMAIL,
-                    to: email,
-                    subject: 'verificacion de email',
-                    html: `
-                    <h1>Bienvenido ${username}</h1>
-                    <p>Neceitamos que verifiques tu email</p>
-                    <br/>
-                    <p>Haz click en verificar</p>
-                    <a
-                    href='http://localhost:8080/api/auth/verify-email?verification_email_token=${verification_email_token}'> Verificar </a> 
-                    <br/>
-                    <span>Si desconoces este registro desestima este mail</span>
-                    `
-                }
-            )
+        mail_transporter.sendMail(
+                    {
+                        from: ENVIRONMENT.GMAIL,
+                        to: email,
+                        subject: 'verificacion de email',
+                        html: `
+                        <h1>Bienvenido ${username}</h1>
+                        <p>Neceitamos que verifiques tu email</p>
+                        <br/>
+                        <p>Haz click en verificar</p>
+                        <a
+                        href='http://localhost:8080/api/auth/verify-email?verification_email_token=${verification_email_token}'> Verificar </a> 
+                        <br/>
+                        <span>Si desconoces este registro desestima este mail</span>
+                        `
+                    }
+                )
+
     
             return response.json({
                     ok: true,
