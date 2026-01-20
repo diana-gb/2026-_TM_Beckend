@@ -63,7 +63,7 @@ class AuthController{
         }
 
         catch(error){
-            console.error(error)
+            
             if(error.status) {
                 return response.json({
                         ok: false,

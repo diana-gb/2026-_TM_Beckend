@@ -37,7 +37,7 @@ try{
             throw new serverError('No autorizado', 401)
         }
     
-        // hago el split porque authorization biene escrito como: bearer seguido del token
+        // hago el split porque authorization viene escrito como: bearer seguido del token
         const auth_token = authorization_header.split(' ')[1]
     
         if (!auth_token){

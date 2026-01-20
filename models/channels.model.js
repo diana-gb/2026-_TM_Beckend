@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ChannelsSchema = new mongoose.Schema(
+const ChannelSchema = new mongoose.Schema(
     {
         fk_id_workspace: {
             type: mongoose.Schema.Types.ObjectId,
@@ -22,6 +22,6 @@ const ChannelsSchema = new mongoose.Schema(
     }
 )
 
-const Channels = mongoose.model('Channels', ChannelsSchema)
+const Channels = mongoose.model('Channels', ChannelSchema)
 
 export default Channels

@@ -1,12 +1,12 @@
-import serverError from "../helpers/error.helper"
-import workspaceRepository from "../repositoty/workspace.repository"
+import serverError from "../helpers/error.helper.js"
+import workspaceRepository from "../repositoty/workspace.repository.js"
 
 class WorkspaceController {
     async getWorkspaces (request, response) {
         //Quiero obtener los epacios asociados a ese usuario
-        console.log('El usuario es', request.user)
-        const user_id = request.user.user_id
-        const workspaces = await workspaceRepository.getWorkspacesByUser(user_id)
+        console.log('El usuario ingresado es:', request.user)
+        const user_id = request.user.id
+        const workspaces = await workspaceRepository.getWorkspacesByUserId(user_id)
         response.json({
             ok:true,
             data: {
@@ -15,9 +15,22 @@ class WorkspaceController {
         })
     }
 
+    async create(request, response){
+        const {title, image, description } = request.body
+        const user_id = request.user.id
+        const workspace = await workspaceRepository.create(user_id, title, image, description)
+        await workspaceRepository.addMember(workspace._id, user_id, 'Owner')
+        response.json({
+            ok: true,
+            data: {
+                workspace
+            }
+        })
+    }
+
     async delete(request, response) {
         try{
-            const user_id = request.user_id
+            const user_id = request.user.id
             const {workspace_id} = request.params
 
             const workspace_selected = await workspaceRepository.getById(workspace_id)
