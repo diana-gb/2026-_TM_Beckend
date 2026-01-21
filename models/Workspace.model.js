@@ -24,7 +24,7 @@ const workspaceSchema = new mongoose.Schema(
             required: false
         },
         image: {
-            type: Image,
+            type: String,
             required: false
         },
         cretaed_at: {

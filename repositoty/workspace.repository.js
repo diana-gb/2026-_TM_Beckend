@@ -14,7 +14,7 @@ async getWorkspacesByUserId(user_id){
     .populate({
         path: 'fk_id_workspace',
         match: {active: true}
-    }) // esto es para expandir sobre la referencia a la tabla espacio de trabajo
+    }) // esto es para expandir sobre la referencia a la tabla espacio de trabajo, osea que accsedo a los datos  que hay en workspaces
 
         return workspaces.filter((member) => member.fk_id_workspace !== null) //Eliminamos los null 
 }

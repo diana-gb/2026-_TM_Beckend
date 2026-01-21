@@ -1,6 +1,5 @@
 import { connectMongoDB } from './config/mongoDB.config.js'
 import express from 'express'
-import testRouter from './routes/test.router.js'
 import authRouter from './routes/auth.router.js'
 import cors from 'cors'
 import workspaceRouter from './routes/workspace.router.js'
@@ -40,7 +39,6 @@ app.use(express.json())
 
 
 
-app.use("/api/test", testRouter)
 
 /* 
 Crear una ruta /api/auth
