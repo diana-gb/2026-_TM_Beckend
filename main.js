@@ -1,14 +1,10 @@
 import { connectMongoDB } from './config/mongoDB.config.js'
-import User from './models/user.models.js'
-import express, { request, response } from 'express'
-import userRepository from './repositoty/user.repository.js'
+import express from 'express'
 import testRouter from './routes/test.router.js'
 import authRouter from './routes/auth.router.js'
-import mail_transporter from './config/mail.config.js'
-import ENVIRONMENT from './config/environment.config.js'
-import randomMiddleware from './middlewares/random.middleware.js'
 import cors from 'cors'
-import workspaceRepository from './repositoty/workspace.repository.js'
+import workspaceRouter from './routes/workspace.router.js'
+
 
 
 
@@ -27,7 +23,7 @@ app.use(cors())
 app.use(express.json())
 
 
-app.get(
+/* app.get(
     '/api/suerte/saber',
     randomMiddleware,
     (request, response) => {
@@ -40,18 +36,20 @@ app.get(
             response.send('otra respuesta loca')
         }
     }
-)
+) */
 
 
 
-app.use('/api/test', testRouter)
+app.use("/api/test", testRouter)
 
 /* 
 Crear una ruta /api/auth
 esta ruta tendra un endpoint que sea POST /register y hara lo que actualmente hace nuestro /auth/register
 */
 
-app.use('/api/auth', authRouter)
+app.use("/api/auth", authRouter)
+app.use("/api/workspace", workspaceRouter)
+
 
 app.listen(
 
