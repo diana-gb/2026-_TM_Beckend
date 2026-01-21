@@ -3,6 +3,7 @@ import express from 'express'
 import authRouter from './routes/auth.router.js'
 import cors from 'cors'
 import workspaceRouter from './routes/workspace.router.js'
+import workspaceRepository from './repositoty/workspace.repository.js'
 
 
 
@@ -75,16 +76,15 @@ Responder con un mensaje tipo 'Usuario creado exitosamente'
 
 
 //Para crear un espacio de trabajo de prueba
-
-/* async function crearEspacioDeTrabajo() {
-    const workspace = userRepository.create(
-        , // aca va mi ID
+async function crearEspacioDeTrabajo() {
+    const workspace = await workspaceRepository.create(
+        "6967f82ce0975cb328a217c5", // aca va mi ID
         'test',
-        ,// aca va la imagen
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLTLCwh0g9W3lIyolkxJ4De6JAib45-AglGw&s",// aca va la imagen
         'esta es la descripcion del espacio de trabajo'
     )
     //Me agrego como miembro
-    await workspaceRepository.addMember(workspace._id, 'mi ID', "owner")
+    await workspaceRepository.addMember(workspace._id, '6967f82ce0975cb328a217c5', "Owner")
 }
 
-crearEspacioDeTrabajo() */
+crearEspacioDeTrabajo() 

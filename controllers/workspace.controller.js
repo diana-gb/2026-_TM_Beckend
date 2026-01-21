@@ -3,6 +3,7 @@ import workspaceRepository from "../repositoty/workspace.repository.js"
 
 class WorkspaceController {
     async getWorkspaces (request, response) {
+        
         //Quiero obtener los epacios asociados a ese usuario
         console.log('El usuario ingresado es:', request.user)
         const user_id = request.user.id
@@ -37,10 +38,12 @@ class WorkspaceController {
             if(!workspace_selected){
                 throw new serverError ('No existe ese espacio de trabajo', 404)
             }
+
             const member_info = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace_id, user_id)
             if (member_info.role !== 'Owner'){
                 throw new serverError ('No tienes permitido eliminar este espacio de trabajo', 403)
             }
+
             await workspaceRepository.delete(workspace_id)
             response.json({
                 ok: true,
@@ -49,8 +52,9 @@ class WorkspaceController {
                 status: 200     
             })
         }
+
         catch (error){
-            /* Si tiene status decimos que es un error controlado (osea es esperable) */
+            
             if (error.status) {
                 return response.json({
                     status: error.status,
@@ -59,6 +63,7 @@ class WorkspaceController {
                     data: null
                 })
             }
+
                 return response.json({
                 ok: false,
                 status: 500,
