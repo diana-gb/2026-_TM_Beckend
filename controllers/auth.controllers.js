@@ -8,7 +8,6 @@ import serverError from "../helpers/error.helper.js"
 
 class AuthController{
     async register (request, response) {
-    
         try{     
                 // API shaping
             const {email, password, username} = request.body
@@ -63,7 +62,7 @@ class AuthController{
         }
 
         catch(error){
-            
+            console.log(error)
             if(error.status) {
                 return response.json({
                         ok: false,
@@ -138,6 +137,7 @@ class AuthController{
 
     }
         catch (error){
+            console.log(error)
  /* Si tiene status decimos que es un error controlado (osea es esperable) */
             if (error.status) {
                 return response.json({
