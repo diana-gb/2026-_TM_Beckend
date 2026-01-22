@@ -87,4 +87,4 @@ async function crearEspacioDeTrabajo() {
     await workspaceRepository.addMember(workspace._id, '6967f82ce0975cb328a217c5', "Owner")
 }
 
-crearEspacioDeTrabajo() 
+/* crearEspacioDeTrabajo()  */

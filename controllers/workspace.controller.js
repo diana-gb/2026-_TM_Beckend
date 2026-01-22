@@ -4,7 +4,7 @@ import workspaceRepository from "../repositoty/workspace.repository.js"
 class WorkspaceController {
     async getWorkspaces (request, response) {
         
-        //Quiero obtener los epacios asociados a ese usuario
+        //Para obtener los epacios asociados a ese usuario
         console.log('El usuario ingresado es:', request.user)
         const user_id = request.user.id
         const workspaces = await workspaceRepository.getWorkspacesByUserId(user_id)
