@@ -5,27 +5,27 @@ Verificar que el usuario tenga el rol correcto
 */
 
 import { response } from "express"
-import serverError from "../helpers/error.helper"
-import workspaceRepository from "../repositoty/workspace.repository"
+import serverError from "../helpers/error.helper.js"
+import workspaceRepository from "../repositoty/workspace.repository.js"
 
-async function workspaceMiddleware(authorized_roles = []){
+function workspaceMiddleware(authorized_roles = []){
 
 
-return function   (request, response, next){
+return async function   (request, response, next){
     
     try{
 
                 const user_id = request.user.user_id
                 const workspace_id = request.params.workspace_id
             
-                const workspace_selected = workspaceRepository.getById(workspace_id)
+                const workspace_selected = await workspaceRepository.getById(workspace_id)
             
                 if(!workspace_selected){
                     throw new serverError ('No existe ese espacio de trabajo', 404)
                 }
             
                 // Para saber si es miembro
-                const member_selected = workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace_id, user_id)
+                const member_selected = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace_id, user_id)
             
                 if(!member_selected){
                     throw new serverError('No eres miembro de este espacio de trabajo', 403)
