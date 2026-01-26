@@ -85,6 +85,8 @@ class WorkspaceController {
                     throw new serverError('El mail del invitado no existe', 404)
                 }
 
+                //const user_invite_role = de quien debe ser valido el rol? del que quiere enviar la invitacion?
+
                 const already_member = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace._id, user_to_invite._id)
 
                 if(already_member){

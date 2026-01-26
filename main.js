@@ -76,15 +76,15 @@ Responder con un mensaje tipo 'Usuario creado exitosamente'
 
 
 //Para crear un espacio de trabajo de prueba
-async function crearEspacioDeTrabajo() {
+/* async function crearEspacioDeTrabajo() {
     const workspace = await workspaceRepository.create(
-        "6967f82ce0975cb328a217c5", // aca va mi ID
-        'Espacio de trabajo 1',
+        "697222e1408c77918ba836e8", // aca va mi ID
+        'Espacio de trabajo: PRUEBA',
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLTLCwh0g9W3lIyolkxJ4De6JAib45-AglGw&s",// aca va la imagen
         'esta es la descripcion del espacio de trabajo'
     )
     //Me agrego como miembro
-    await workspaceRepository.addMember(workspace._id, '6967f82ce0975cb328a217c5', "Owner")
+    await workspaceRepository.addMember(workspace._id, '697222e1408c77918ba836e8', "Owner")
 }
 
-/* crearEspacioDeTrabajo()  */
+crearEspacioDeTrabajo()  */
