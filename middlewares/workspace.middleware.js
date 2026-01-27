@@ -32,7 +32,7 @@ return async function   (request, response, next){
                 }
             
                 //Gestionamos acceso por rol
-            if(authorized_roles.length > 0 && authorized_roles.includes(member_selected.role)){
+            if(authorized_roles.length > 0 && !authorized_roles.includes(member_selected.role)){
                 throw new serverError('No estas autorizado para realizar esta operacion', 403)
             }
         
