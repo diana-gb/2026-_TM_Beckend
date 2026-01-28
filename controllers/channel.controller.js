@@ -1,3 +1,4 @@
+import serverError from "../helpers/error.helper.js"
 import { channelRepository } from "../repositoty/channel.repository.js"
 
 class ChannelController {
@@ -43,7 +44,9 @@ class ChannelController {
             const {name} = request.body
             const {workspace_id} = request.params
 
-            //VALIDAR NOMBRE !
+            if (!name || name.trim() === ''){
+                throw new serverError('El nombre ingresado no es valido', 400)
+            }
 
             const channel_created = await channelRepository.create(workspace_id, name)
             response.json(
@@ -72,8 +75,8 @@ class ChannelController {
             return response.json(
                 {
                     ok: false,
-                    statusa: 500,
-                    massage: 'Error interno del servidor',
+                    status: 500,
+                    message: 'Error interno del servidor',
                     data: null
                 }
             )

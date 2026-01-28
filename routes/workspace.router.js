@@ -14,5 +14,6 @@ workspaceRouter.delete('/:workspace_id', authMiddleware, workspaceController.del
 workspaceRouter.post('/:workspace_id/members', authMiddleware, workspaceMiddleware(['Owner', 'Admin']), workspaceController.addMemberRequest)
 workspaceRouter.get('/:workspace_id/members/accept-invitation', workspaceController.acceptInvitation)
 workspaceRouter.get('/:workspace_id/channels', authMiddleware, workspaceMiddleware(), channelController.getAllByWorkspaceId )
+workspaceRouter.post('/:workspace_id/channels', authMiddleware, workspaceMiddleware(['Owner', 'Admin']), channelController.create )
 
 export default workspaceRouter

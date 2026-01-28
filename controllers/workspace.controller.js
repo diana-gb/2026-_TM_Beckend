@@ -5,6 +5,8 @@ import userRepository from "../repositoty/user.repository.js"
 import workspaceRepository from "../repositoty/workspace.repository.js"
 import jwt from "jsonwebtoken"
 class WorkspaceController {
+
+
     async getWorkspaces (request, response) {
         
         //Para obtener los epacios asociados a ese usuario
@@ -38,6 +40,7 @@ class WorkspaceController {
             const {workspace_id} = request.params
 
             const workspace_selected = await workspaceRepository.getById(workspace_id)
+            
             if(!workspace_selected){
                 throw new serverError ('No existe ese espacio de trabajo', 404)
             }
@@ -85,10 +88,10 @@ class WorkspaceController {
                     throw new serverError('El mail del invitado no existe', 404)
                 }
 
-                //de quien debe ser valido el rol? del que quiere enviar la invitacion?
-/*                     if(!authorized_roles.includes(role)){
-                        throw new serverError('No estas autorizado para realizar esta accion', 403)
-                    } */
+                //REVISAR ESTO
+/*                 if(!authorized_roles.includes(request.member.role)){
+                        throw new serverError('No estas autorizado para realizar esta operacion', 403)
+                }  */
 
                 const already_member = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace._id, user_to_invite._id)
 
@@ -186,6 +189,7 @@ class WorkspaceController {
     }
 
     async getById (request, response){
+
         try{
 
             const {workspace, member} = request
@@ -196,7 +200,8 @@ class WorkspaceController {
                 data: {
                     workspace,
                     member
-                }
+                },
+                message: "Has seleccionado el espacio de trabajo: "
             }
         )
         }

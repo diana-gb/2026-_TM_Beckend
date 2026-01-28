@@ -15,7 +15,7 @@ return async function   (request, response, next){
     
     try{
 
-                const user_id = request.user.user_id
+                const user_id = request.user.id
                 const workspace_id = request.params.workspace_id
             
                 const workspace_selected = await workspaceRepository.getById(workspace_id)
