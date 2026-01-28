@@ -1,4 +1,4 @@
-import Channels from "../models/channels.model";
+import Channels from "../models/channels.model.js";
 
 class ChannelRepository{
 

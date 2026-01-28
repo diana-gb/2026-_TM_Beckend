@@ -1,4 +1,4 @@
-import { channelRepository } from "../repositoty/channel.repository"
+import { channelRepository } from "../repositoty/channel.repository.js"
 
 class ChannelController {
     async getAllByWorkspaceId (request, response){
@@ -43,9 +43,9 @@ class ChannelController {
             const {name} = request.body
             const {workspace_id} = request.params
 
-            //VALIDAR NOMBRE
+            //VALIDAR NOMBRE !
 
-            const channel_created = await  channelRepository.create(workspace_id, name)
+            const channel_created = await channelRepository.create(workspace_id, name)
             response.json(
                 {
                     status: 201,
@@ -80,3 +80,6 @@ class ChannelController {
         }
     }
 }
+
+const channelController = new ChannelController()
+export {channelController}
