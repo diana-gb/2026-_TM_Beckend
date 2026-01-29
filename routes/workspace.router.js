@@ -3,6 +3,8 @@ import workspaceController from '../controllers/workspace.controller.js'
 import authMiddleware from '../middlewares/auth.middleware.js'
 import workspaceMiddleware from '../middlewares/workspace.middleware.js'
 import { channelController } from '../controllers/channel.controller.js'
+import channelMiddleware from '../middlewares/channel.middleware.js'
+import messagesController from '../controllers/messages.controller.js'
 
 
 const workspaceRouter = express.Router()
@@ -15,5 +17,6 @@ workspaceRouter.post('/:workspace_id/members', authMiddleware, workspaceMiddlewa
 workspaceRouter.get('/:workspace_id/members/accept-invitation', workspaceController.acceptInvitation)
 workspaceRouter.get('/:workspace_id/channels', authMiddleware, workspaceMiddleware(), channelController.getAllByWorkspaceId )
 workspaceRouter.post('/:workspace_id/channels', authMiddleware, workspaceMiddleware(['Owner', 'Admin']), channelController.create )
+workspaceRouter.get('/:workspace_id/channels/:channels_id/messages', authMiddleware, workspaceMiddleware(), channelMiddleware, messagesController.create)
 
 export default workspaceRouter
