@@ -4,6 +4,7 @@ import authRouter from './routes/auth.router.js'
 import cors from 'cors'
 import workspaceRouter from './routes/workspace.router.js'
 import workspaceRepository from './repositoty/workspace.repository.js'
+import messageRepository from './repositoty/message.repository.js'
 
 
 
@@ -88,3 +89,5 @@ Responder con un mensaje tipo 'Usuario creado exitosamente'
 }
 
 crearEspacioDeTrabajo()  */
+
+/* messageRepository.getAllByChannelId('697b6d1611935c6644dd5ce4').then(result => console.log(JSON.stringify(result))) */

@@ -6,7 +6,7 @@ class MessagesController{
             const {content} = request.body
             const member_id = request.member._id
             const {channel_id} = request.params
-            await messageRepository.create(member_id, content, channel_id)
+            await messageRepository.create(channel_id, member_id, content)
 
             return response.json(
                 {
