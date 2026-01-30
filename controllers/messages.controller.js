@@ -4,7 +4,7 @@ class MessagesController{
     async create (request, response){
         try{
             const {content} = request.body
-            const member_id = request.member.member_id
+            const member_id = request.member._id
             const {channel_id} = request.params
             await messageRepository.create(member_id, content, channel_id)
 
@@ -38,6 +38,18 @@ class MessagesController{
     async getByChannelId (request, response){
         try{
             const {channel_id} = request.params
+            const messages = await messageRepository.getAllByChannelId(channel_id)
+
+            return response.json(
+                {
+                    ok: true,
+                    status: 200,
+                    message: 'Mensajes obtenidos exitosamente',
+                    data: {
+                        messages
+                    }
+                }
+            )
             
         }
 
