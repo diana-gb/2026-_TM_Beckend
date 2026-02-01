@@ -16,8 +16,20 @@ async getWorkspacesByUserId(user_id){
         match: {active: true}
     }) // esto es para expandir sobre la referencia a la tabla espacio de trabajo, osea que accsedo a los datos  que hay en workspaces
 
-        return workspaces.filter((member) => member.fk_id_workspace !== null) //Eliminamos los null 
-}
+       const members_workspace = workspaces.filter((member) => member.fk_id_workspace !== null) //Eliminamos los null 
+        return members_workspace.map(
+            (members_workspace) => {
+                return{
+                    member_id: members_workspace._id,
+                    member_role: members_workspace.role,
+                    member_id_user: members_workspace.fk_id_user,
+                    workspace_image: members_workspace.fk_id_workspace.image,
+                    workspace_title: members_workspace.fk_id_workspace.title,
+                    workspace_id: members_workspace.fk_id_workspace._id
+                }
+            }
+        )
+    }
 
 async create (fk_id_owner, title, image, description){
     const workspace = await Workspace.create ({
