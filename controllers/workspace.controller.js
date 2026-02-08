@@ -22,16 +22,36 @@ class WorkspaceController {
     }
 
     async create(request, response){
-        const {title, image, description } = request.body
-        const user_id = request.user.id
-        const workspace = await workspaceRepository.create(user_id, title, image, description)
-        await workspaceRepository.addMember(workspace._id, user_id, 'Owner')
-        response.json({
-            ok: true,
-            data: {
-                workspace
+        try{
+
+            const {title, /* image, */ description } = request.body
+            const user_id = request.user.id
+            const workspace = await workspaceRepository.create(user_id, title, null, description)
+            await workspaceRepository.addMember(workspace._id, user_id, 'Owner')
+            response.json({
+                ok: true,
+                data: {
+                    workspace
+                }
+            })
+        }
+        catch(error){
+            if (error.status) {
+                return response.json({
+                    status: error.status,
+                    ok: false,
+                    message: error.message,
+                    data: null
+                })
             }
-        })
+
+                return response.json({
+                ok: false,
+                status: 500,
+                message: "Error interno del servidor",
+                data: null
+            })  
+        }
     }
 
     async delete(request, response) {
