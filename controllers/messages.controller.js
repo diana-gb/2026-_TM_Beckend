@@ -1,11 +1,11 @@
 import messageRepository from "../repositoty/message.repository.js"
 
-class MessagesController{
-    async create (request, response){
-        try{
-            const {content} = request.body
+class MessagesController {
+    async create(request, response, next) {
+        try {
+            const { content } = request.body
             const member_id = request.member._id
-            const {channel_id} = request.params
+            const { channel_id } = request.params
             await messageRepository.create(channel_id, member_id, content)
 
             return response.json(
@@ -16,28 +16,14 @@ class MessagesController{
                 }
             )
         }
-        catch(error){
-            if (error.status) {
-                return response.json({
-                    status: error.status,
-                    ok: false,
-                    message: error.message,
-                    data: null
-                })
-            }
-
-            return response.json({
-                ok: false,
-                status: 500,
-                message: "Error interno del servidor",
-                data: null
-            })
+        catch (error) {
+            next(error)
         }
     }
 
-    async getByChannelId (request, response){
-        try{
-            const {channel_id} = request.params
+    async getByChannelId(request, response, next) {
+        try {
+            const { channel_id } = request.params
             const messages = await messageRepository.getAllByChannelId(channel_id)
 
             return response.json(
@@ -50,28 +36,14 @@ class MessagesController{
                     }
                 }
             )
-            
+
         }
 
-        catch(error){
-            if (error.status) {
-                return response.json({
-                    status: error.status,
-                    ok: false,
-                    message: error.message,
-                    data: null
-                })
-            }
-
-            return response.json({
-                ok: false,
-                status: 500,
-                message: "Error interno del servidor",
-                data: null
-            })
+        catch (error) {
+            next(error)
         }
     }
-        
+
 }
 
 const messagesController = new MessagesController()

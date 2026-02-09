@@ -5,6 +5,8 @@ import cors from 'cors'
 import workspaceRouter from './routes/workspace.router.js'
 import workspaceRepository from './repositoty/workspace.repository.js'
 import messageRepository from './repositoty/message.repository.js'
+import { verifyApiKey } from './middlewares/apiKey.middleware.js'
+import errorHandlerMiddleware from './middlewares/errorHandler.middleware.js'
 
 
 
@@ -18,10 +20,13 @@ const app = express()
 /* Cors es para que otras direcciones distintas a la nuestra puedan consultar nuestro servidor */
 app.use(cors())
 
+
 //Habilita a mi servidor a recibir json por body
 
 //express lee el request.headers{'content-type'} y si el valor es application/json entonces guardda en el request.body y el json transformado
 app.use(express.json())
+
+app.use(verifyApiKey)
 
 
 /* app.get(
@@ -50,6 +55,7 @@ esta ruta tendra un endpoint que sea POST /register y hara lo que actualmente ha
 app.use("/api/auth", authRouter)
 app.use("/api/workspace", workspaceRouter)
 
+app.use(errorHandlerMiddleware)
 
 app.listen(
 
@@ -67,8 +73,8 @@ app.listen(
 })
  */
 
-//Desarrollar un endpoint 
-/* 
+//Desarrollar un endpoint
+/*
 POST /auth/register
 Nos enviaran un username, email, password
 Crear el registro en mongo DB usando el user.repository
