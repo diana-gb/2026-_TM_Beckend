@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+
 const ChannelMessagesSchema = new mongoose.Schema(
     {
         fk_id_channel: {

@@ -1,20 +1,43 @@
 import Channels from "../models/channels.model.js";
 
-class ChannelRepository{
+class ChannelRepository {
 
-    async create (workspace_id, name){
-        return await Channels.create({title: name, fk_id_workspace: workspace_id})
+    async create(workspace_id, name) {
+        const newChannel = await Channels.create({ title: name, fk_id_workspace: workspace_id })
+        return [newChannel].map(({ _id, title, fk_id_workspace, created_at, active }) => ({
+            id: _id,
+            name: title,
+            workspaceId: fk_id_workspace,
+            createdAt: created_at,
+            active: active
+        }))[0]
     }
 
     async getAllByWorkspaceId(workspace_id) {
-        return await Channels.find({fk_id_workspace: workspace_id})
+        const channels = await Channels.find({ fk_id_workspace: workspace_id })
+        return channels.map(({ _id, title, fk_id_workspace, created_at, active }) => ({
+            id: _id,
+            name: title,
+            workspaceId: fk_id_workspace,
+            createdAt: created_at,
+            active: active
+        }))
     }
 
-    async getByIdAndWorkspaceId(channel_id, workspace_id){
-        return await Channels.findOne({_id: channel_id, fk_id_workspace: workspace_id})
+    async getByIdAndWorkspaceId(channel_id, workspace_id) {
+        const channel = await Channels.findOne({ _id: channel_id, fk_id_workspace: workspace_id })
+        return channel.map(({ _id, title, fk_id_workspace, created_at, active }) => ({
+            id: _id,
+            name: title,
+            workspaceId: fk_id_workspace,
+            createdAt: created_at,
+            active: active
+        }))
     }
+
+
 }
 
-const  channelRepository = new ChannelRepository ()
+const channelRepository = new ChannelRepository()
 
-export {channelRepository}
+export { channelRepository }

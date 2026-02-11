@@ -6,7 +6,7 @@ export const verifyApiKey = (req, res, next) => {
         return res.status(401).json({
             status: 401,
             ok: false,
-            message: 'Unauthorized: Invalid API Key'
+            message: 'No autorizado: la API Key ingresada no es valida'
         });
     }
     next();
