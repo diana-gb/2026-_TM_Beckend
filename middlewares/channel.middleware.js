@@ -2,7 +2,9 @@ import serverError from "../helpers/error.helper.js"
 import { channelRepository } from "../repository/channel.repository.js"
 
 async function channelMiddleware(request, response, next) {
+
     try {
+
         const { workspace_id, channel_id } = request.params
 
         const channel_selected = await channelRepository.getByIdAndWorkspaceId(channel_id, workspace_id)

@@ -26,13 +26,18 @@ class ChannelRepository {
 
     async getByIdAndWorkspaceId(channel_id, workspace_id) {
         const channel = await Channels.findOne({ _id: channel_id, fk_id_workspace: workspace_id })
-        return channel.map(({ _id, title, fk_id_workspace, created_at, active }) => ({
-            id: _id,
-            name: title,
-            workspaceId: fk_id_workspace,
-            createdAt: created_at,
-            active: active
-        }))
+
+        if (!channel) return null
+
+        return {
+            id: channel._id,
+            name: channel.title,
+            workspaceId: channel.fk_id_workspace,
+            createdAt: channel.created_at,
+            active: channel.active
+
+        }
+
     }
 
 
