@@ -1,4 +1,4 @@
-import messageRepository from "../repositoty/message.repository.js"
+import messageRepository from "../repository/message.repository.js"
 
 class MessagesController {
     async create(request, response, next) {
@@ -17,7 +17,7 @@ class MessagesController {
     }
 
     async getByChannelId(request, response, next) {
-        console.log("ENTRANDO AL CONTROLLER")
+
         const { channel_id } = request.params
         const messages = await messageRepository.getAllByChannelId(channel_id)
 

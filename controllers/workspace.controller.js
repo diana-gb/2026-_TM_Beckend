@@ -1,8 +1,8 @@
 import ENVIRONMENT from "../config/environment.config.js"
 import mail_transporter from "../config/mail.config.js"
 import serverError from "../helpers/error.helper.js"
-import userRepository from "../repositoty/user.repository.js"
-import workspaceRepository from "../repositoty/workspace.repository.js"
+import userRepository from "../repository/user.repository.js"
+import workspaceRepository from "../repository/workspace.repository.js"
 import jwt from "jsonwebtoken"
 
 

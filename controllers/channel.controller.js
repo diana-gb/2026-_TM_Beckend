@@ -1,5 +1,5 @@
 import serverError from "../helpers/error.helper.js"
-import { channelRepository } from "../repositoty/channel.repository.js"
+import { channelRepository } from "../repository/channel.repository.js"
 
 class ChannelController {
     async getAllByWorkspaceId(request, response, next) {

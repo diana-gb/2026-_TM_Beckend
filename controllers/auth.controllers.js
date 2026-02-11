@@ -1,5 +1,5 @@
 
-import userRepository from "../repositoty/user.repository.js"
+import userRepository from "../repository/user.repository.js"
 import jwt from 'jsonwebtoken'
 import ENVIRONMENT from "../config/environment.config.js"
 import bcrypt from 'bcrypt'

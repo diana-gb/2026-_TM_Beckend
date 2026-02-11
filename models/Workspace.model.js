@@ -27,7 +27,7 @@ const workspaceSchema = new mongoose.Schema(
             type: String,
             required: false
         },
-        cretaed_at: {
+        created_at: {
             type: Date,
             default: Date.now
         },
