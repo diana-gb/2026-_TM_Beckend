@@ -23,7 +23,7 @@ class WorkspaceController {
     }
 
     async create(request, response, next) {
-        const { title, image, description } = request.body
+        const { title, /* image */ description } = request.body
         const user_id = request.user.id
         const workspace = await workspaceRepository.create(user_id, title, null, description)
         await workspaceRepository.addMember(workspace._id, user_id, 'Owner')

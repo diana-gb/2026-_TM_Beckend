@@ -29,6 +29,7 @@ class ChannelRepository {
 
         if (!channel) return null
 
+
         return {
             id: channel._id,
             name: channel.title,

@@ -55,8 +55,10 @@ async addMember (workspace_id, user_id, role){
 
 async getMemberByWorkspaceIdAndUserId(workspace_id, user_id) {
     const member = await MemberWorkspace.findOne({fk_id_workspace: workspace_id, fk_id_user: user_id})
+
     return member
 }
+
 
 async delete(workspace_id){
     await Workspace.findByIdAndUpdate(workspace_id, {active: false})
