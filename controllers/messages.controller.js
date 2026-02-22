@@ -1,17 +1,44 @@
+import memberRepository from "../repository/member.repository.js"
 import messageRepository from "../repository/message.repository.js"
 
 class MessagesController {
     async create(request, response, next) {
+
         const { content } = request.body
-        const member_id = request.member._id
-        const { channel_id } = request.params
-        await messageRepository.create(channel_id, member_id, content)
+        const user_id = request.user.id
+        const channel = request.channel
+
+        if(!content || !content.trim()){
+            return response.json({
+                ok: false,
+                status: 400,
+                message: 'Debe escribir un mensaje'                
+            })
+        }
+
+        const member = await memberRepository.getByUserAndWorkspace(
+            user_id,
+            channel.fk_id_workspace
+        )
+
+        if(!member){
+            return response.json(
+                {
+                ok: false,
+                status: 403,
+                message: 'No perteneces a este workspace'                
+            }
+        )
+        }
+
+        const newMessage = await messageRepository.create(channel._id, member._id, content)
 
         return response.json(
             {
                 ok: true,
                 status: 201,
-                message: 'Mensaje creado'
+                message: 'Mensaje creado',
+                data: newMessage
             }
         )
     }
