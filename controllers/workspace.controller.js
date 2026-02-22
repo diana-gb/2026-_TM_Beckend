@@ -10,9 +10,8 @@ class WorkspaceController {
 
 
     async getWorkspaces(request, response) {
-
         //Para obtener los epacios asociados a ese usuario
-        console.log('El usuario ingresado es:', request.user)
+
         const user_id = request.user.id
         const workspaces = await workspaceRepository.getWorkspacesByUserId(user_id)
         response.json({
