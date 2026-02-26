@@ -15,6 +15,28 @@ El usuario debe estar registrado, al hacer el registro se le envia un mail con u
 
 Un miembro puede invitar a otro usuario al canal siempre que cuente con autorizacion (segun el rol).
 
+## Instrucciones para ejecutar la API
+
+1_  configurar las variables de entorno en el archivo enviroment:
+
+        MONGO_DB_URI
+        MONGO_DB_NAME
+        JWT_SECRET_KEY
+        GMAIL_PASSWORD
+        GMAIL_USERNAME
+        URL_FRONTEND
+        URL_BACKEND
+        MYSQL_DB_HOST
+        MYSQL_DB_USER
+        MYSQL_DB_PASSWORD
+        MYSQL_DB_NAME
+        API_KEY
+
+En la terminal: 
+2_ npm install (instalar dependencias)
+
+3_ npm run dev (prender el proyecto)
+
 
 
 ## Ejemplos de request
