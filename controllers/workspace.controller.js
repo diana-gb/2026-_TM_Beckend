@@ -10,7 +10,7 @@ class WorkspaceController {
 
 
     async getWorkspaces(request, response) {
-        //Para obtener los epacios asociados a ese usuario
+    
 
         const user_id = request.user.id
         const workspaces = await workspaceRepository.getWorkspacesByUserId(user_id)
@@ -23,7 +23,7 @@ class WorkspaceController {
     }
 
     async create(request, response, next) {
-        const { title, /* image */ description } = request.body
+        const { title, description } = request.body
         const user_id = request.user.id
         const workspace = await workspaceRepository.create(user_id, title, null, description)
         await workspaceRepository.addMember(workspace._id, user_id, 'Owner')
@@ -66,11 +66,6 @@ class WorkspaceController {
         if (!user_to_invite) {
             throw new serverError('El mail del invitado no existe', 404)
         }
-
-        //REVISAR ESTO
-        /*                 if(!authorized_roles.includes(request.member.role)){
-                                throw new serverError('No estas autorizado para realizar esta operacion', 403)
-                        }  */
 
         const already_member = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace._id, user_to_invite._id)
 

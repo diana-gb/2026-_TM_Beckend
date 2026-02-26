@@ -47,7 +47,7 @@ const makeRequest = () => {
             resolve(false);
         });
 
-        // Send empty body to trigger "Debes ingresar todos los datos" error (400)
+        
         req.write(JSON.stringify({}));
         req.end();
     });

@@ -2,7 +2,7 @@ import http from 'http';
 import dotenv from 'dotenv';
 import path from 'path';
 
-// Load .env from current directory
+
 dotenv.config();
 
 const apiKey = process.env.API_KEY;
@@ -17,7 +17,7 @@ if (!apiKey) {
 const options = {
     hostname: 'localhost',
     port: 8080,
-    path: '/api/status-check-middleware', // Arbitrary path
+    path: '/api/status-check-middleware', 
     method: 'GET',
     headers: {}
 };
@@ -53,16 +53,13 @@ const makeRequest = (name, headers, expectedStatus) => {
 async function runTests() {
     console.log("Starting verification...");
 
-    // Test 1: No API Key
+    
     const test1 = await makeRequest('No API Key', {}, 401);
 
-    // Test 2: Wrong API Key
+    
     const test2 = await makeRequest('Wrong API Key', { 'x-api-key': 'wrong-key-123' }, 401);
 
-    // Test 3: Correct API Key
-    // We expect 404 because the path /api/status-check-middleware likely doesn't exist.
-    // If we get 401, the key was rejected.
-    // If we get 404 (or 200), the key was accepted (middleware passed).
+
     const test3 = await makeRequest('Correct API Key', { 'x-api-key': apiKey }, 404);
 
     if (test1 && test2 && test3) {

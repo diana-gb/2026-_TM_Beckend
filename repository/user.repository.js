@@ -20,7 +20,7 @@ class UserRepository {
                 active: false
             },
             {
-                new: true // Para que se devuelva el registro actualizado
+                new: true 
             }
         )
         return usuario

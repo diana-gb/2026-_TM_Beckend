@@ -1,8 +1,3 @@
-/* 
-Verifica que el usuario sea miembro del workspace
-Verificar que el workspace exista
-Verificar que el usuario tenga el rol correcto
-*/
 
 import { response } from "express"
 import serverError from "../helpers/error.helper.js"
@@ -24,14 +19,14 @@ function workspaceMiddleware(authorized_roles = []) {
                 throw new serverError('No existe ese espacio de trabajo', 404)
             }
 
-            // Para saber si es miembro
+            
             const member_selected = await workspaceRepository.getMemberByWorkspaceIdAndUserId(workspace_id, user_id)
 
             if (!member_selected) {
                 throw new serverError('No eres miembro de este espacio de trabajo', 403)
             }
 
-            //Gestionamos acceso por rol
+            
             if (authorized_roles.length > 0 && !authorized_roles.includes(member_selected.role)) {
                 throw new serverError('No estas autorizado para realizar esta operacion', 403)
             }
@@ -43,7 +38,7 @@ function workspaceMiddleware(authorized_roles = []) {
         }
 
         catch (error) {
-            if (error.status) { // en caso de que el error tenga status
+            if (error.status) { 
                 return response.json({
                     status: error.status,
                     ok: false,
@@ -52,8 +47,8 @@ function workspaceMiddleware(authorized_roles = []) {
                 })
             }
 
-            // Si no tiene status
-            return response.jsonp({
+            
+            return response.json({
                 ok: false,
                 status: 500,
                 message: 'Error interno del servidor',

@@ -8,7 +8,7 @@ import serverError from "../helpers/error.helper.js"
 
 class AuthController {
     async register(request, response, next) {
-        // API shaping
+        
         const { email, password, username } = request.body
 
         if (!email || !password || !username) {
@@ -25,12 +25,10 @@ class AuthController {
 
         const verification_email_token = jwt.sign(
             {
-                email: email // aca guardamos el mail del usuario que se quiere registrar
+                email: email 
             },
             ENVIRONMENT.JWT_SECRET_KEY
-            /*                 {
-                                expiresIn: '7d'
-                            }  para que expire en 7 dias por ejemplo si no verifico en ese plazo*/
+            
         )
 
         mail_transporter.sendMail(
@@ -64,10 +62,6 @@ class AuthController {
         const { email, password } = request.body
 
 
-        /* 
-        Aplicar validaciones de mail y password 
-        */
-
         if (!email) {
             throw new serverError('Debes ingresar un email', 400)
         }
@@ -84,9 +78,7 @@ class AuthController {
 
         }
 
-        /* Respondemos igual con credenciales invalidas tanto para usuario incorrecto como para contraseña asi no hay difereniacion para mayor seguridad del usuario */
 
-        // en linea 78 hacemos comparacion de un texto con un hash mediante bcrypt
         if (!(await bcrypt.compare(password, usuario_encontrado.password))) {
             throw new serverError('credenciales invalidas', 401)
         }
@@ -145,23 +137,12 @@ class AuthController {
             }
         )
 
-        /* 
-        Redireccionar al frontend 
-        */
 
         return response.redirect(
-            ENVIRONMENT.URL_FRONTEND + '/login?from=email-validated' // opcional querystring validated
+            ENVIRONMENT.URL_FRONTEND + '/login?from=email-validated' 
         )
 
-        /*     return response.json(
-                {
-                        status: 200,
-                        message: 'usuario verificado',
-                        ok: true,
-                        data : null
-            }
-        )
-            */
+        
     }
 }
 
@@ -171,10 +152,3 @@ const authController = new AuthController()
 
 export default authController
 
-//Orden de menor a mayor COMPLEJIDAD de exigencia o de demanda de poder computacional?
-/* 
-condicion sobre una variable
-un bucle de 100 a 1000 registros (donde no se consulta a ningun servicio externo)
-una consulta a DB (Debatible porque si la DB tiene millones de registros puede ser mas costoso)
-una consulta a otro servidor
-*/
