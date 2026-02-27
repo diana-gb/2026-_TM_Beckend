@@ -2,8 +2,6 @@ import ENVIRONMENT from "../config/environment.config.js";
 
 export const verifyApiKey = (req, res, next) => {
 
-        console.log("Header recibido:", req.headers['x-api-key']);
-    console.log("API_KEY env:", process.env.API_KEY);
     const apiKey = req.headers['x-api-key'];
     if (!apiKey || apiKey !== ENVIRONMENT.API_KEY) {
         return res.status(401).json({
