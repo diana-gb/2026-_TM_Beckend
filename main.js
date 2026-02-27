@@ -26,7 +26,10 @@ app.use(cors())
 //express lee el request.headers{'content-type'} y si el valor es application/json entonces guardda en el request.body y el json transformado
 app.use(express.json())
 
-app.use(verifyApiKey)
+app.use('/api', verifyApiKey)
+
+/* combie esto, asi estaba antes :app.use(verifyApiKey) */
+
 
 
 /* app.get(
