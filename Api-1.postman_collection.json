@@ -1,0 +1,165 @@
+{
+  "info": {
+    "_postman_id": "1b4b0c60-b419-465e-8869-678beea54bd3",
+    "name": "Api-1",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50913059"
+  },
+  "item": [
+    {
+      "name": "/api/auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "verify email",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/api/workspaces",
+      "item": [
+        {
+          "name": "/:workspace_id",
+          "item": [
+            {
+              "name": "/members",
+              "item": []
+            },
+            {
+              "name": "channels",
+              "item": [
+                {
+                  "name": "channel_id",
+                  "item": [
+                    {
+                      "name": "messages",
+                      "item": [
+                        {
+                          "name": "crear mensaje",
+                          "request": {
+                            "method": "GET",
+                            "header": []
+                          },
+                          "response": []
+                        },
+                        {
+                          "name": "obtener mensajes",
+                          "request": {
+                            "method": "GET",
+                            "header": []
+                          },
+                          "response": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "crear canal",
+                  "request": {
+                    "method": "GET",
+                    "header": []
+                  },
+                  "response": []
+                },
+                {
+                  "name": "obtener canales",
+                  "request": {
+                    "method": "GET",
+                    "header": []
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "obtener por id",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im5lbmVpIiwiZW1haWwiOiJiZWNrZXIucnVobEBnbWFpbC5jb20iLCJpZCI6IjY5NzIyMmUxNDA4Yzc3OTE4YmE4MzZlOCIsImlhdCI6MTc2OTQzNTI3NH0.uXlTuv99fPcNTTdQjriuNyBXW-oGu7SS1ZbCWOwWuhI",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-api-key",
+                    "value": "d2f95992-e4f5-4506-90c2-fed96c76135b",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{URL_API}}/api/workspace/:workspace_id",
+                  "host": [
+                    "{{URL_API}}"
+                  ],
+                  "path": [
+                    "api",
+                    "workspace",
+                    ":workspace_id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "workspace_id",
+                      "value": "697a691e09fc1734228fff24"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Obtener espacios de trabajo",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "crear espacio de trabajo",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
